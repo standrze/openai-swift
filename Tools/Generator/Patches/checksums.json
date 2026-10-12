@@ -1,0 +1,34 @@
+{
+  "Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateAllAnyOneOf.swift": {
+    "original": "52530ba1c044ad2432219cd52751444868b7b058a22497c497f97e005a198c46",
+    "patched": "237b4878f206313d8609618e4d4489d6d338775133794b4765e666b6c199775c"
+  },
+  "Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateCodable.swift": {
+    "original": "a3655363340c0c4bb7dfb636eeee232a036a87b0c43f9bd12274a477bf9423ed",
+    "patched": "af857b3ec2f21b2a13e3fd018c635166f3601df572d0f41fff3d4f6e88116833"
+  },
+  "Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawEnum.swift": {
+    "original": "23d9dce060d8681de29a4e118adc5543500bd58d75793be9a0ad49d3b4c7a54d",
+    "patched": "2ac85004ae6fb8745b79dd5c07234811edcc78ef5e0d8e85d0da69f2aa1faca7"
+  },
+  "Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawRepresentableEnum.swift": {
+    "original": "9b3c1235428c9388bd6cd07afc42a9a4980f0cc4e5b413b2dc5b8454fe9b6b6a",
+    "patched": "65dffe0241ee98b1876fdee658eadabb028742224672dbbcd24d5fd74e11959c"
+  },
+  "Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateStructBlueprint.swift": {
+    "original": "409c223e8afdb94dac7972ed294c58fdb2e264a180a7fa6109c5f46ee64d730b",
+    "patched": "d8f4461c6929f7a8d6683f755d08eac4e7c4c97d3d597e7a973287d7667e518d"
+  },
+  "Sources/_OpenAPIGeneratorCore/Translator/CommonTypes/Constants.swift": {
+    "original": "8a1d11d445ac8ee57136c3af622465970c18ac361cff8ed978a2194a93a93bfb",
+    "patched": "3d797356791f6d801aef1274e3db72188b3fdb19ed827f55ee379759f97d85da"
+  },
+  "Sources/_OpenAPIGeneratorCore/Translator/Responses/translateResponseOutcome.swift": {
+    "original": "5a7f6932ae438a90e55fc75cdae86da960e9015b5b5ce514f0ae0a3f7fedb205",
+    "patched": "a99b6e4d359ad985d6ede51aa1d94758112619894fd1b047dfd45d42708d2804"
+  },
+  "Sources/_OpenAPIGeneratorCore/Translator/TypesTranslator/translateBoxedTypes.swift": {
+    "original": "07f03b9da893afb772c3d33a607af142e9a4f4dabbbc433d216860d516488ffa",
+    "patched": "e75c7b50e59450b2b76cd8b5c8bd553913747ee133af656844649a495781b570"
+  }
+}

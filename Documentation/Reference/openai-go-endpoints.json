@@ -1,0 +1,2386 @@
+{
+  "repository": "https://github.com/openai/openai-go",
+  "revision": "2922f3e8a846d561d85e4aabb90f017c2de10851",
+  "operations": [
+    {
+      "name": "decisionsCreate",
+      "method": "POST",
+      "path": "decisions",
+      "upstreamSymbol": "client.Decisions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "completionsCreate",
+      "method": "POST",
+      "path": "completions",
+      "upstreamSymbol": "client.Completions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "chatCompletionsCreate",
+      "method": "POST",
+      "path": "chat/completions",
+      "upstreamSymbol": "client.Chat.Completions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "chatCompletionsRetrieve",
+      "method": "GET",
+      "path": "chat/completions/{completion_id}",
+      "upstreamSymbol": "client.Chat.Completions.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "chatCompletionsUpdate",
+      "method": "POST",
+      "path": "chat/completions/{completion_id}",
+      "upstreamSymbol": "client.Chat.Completions.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "chatCompletionsList",
+      "method": "GET",
+      "path": "chat/completions",
+      "upstreamSymbol": "client.Chat.Completions.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "chatCompletionsDelete",
+      "method": "DELETE",
+      "path": "chat/completions/{completion_id}",
+      "upstreamSymbol": "client.Chat.Completions.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "chatCompletionsMessagesList",
+      "method": "GET",
+      "path": "chat/completions/{completion_id}/messages",
+      "upstreamSymbol": "client.Chat.Completions.Messages.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "embeddingsCreate",
+      "method": "POST",
+      "path": "embeddings",
+      "upstreamSymbol": "client.Embeddings.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "filesCreate",
+      "method": "POST",
+      "path": "files",
+      "upstreamSymbol": "client.Files.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "filesRetrieve",
+      "method": "GET",
+      "path": "files/{file_id}",
+      "upstreamSymbol": "client.Files.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "filesList",
+      "method": "GET",
+      "path": "files",
+      "upstreamSymbol": "client.Files.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "filesDelete",
+      "method": "DELETE",
+      "path": "files/{file_id}",
+      "upstreamSymbol": "client.Files.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "filesContent",
+      "method": "GET",
+      "path": "files/{file_id}/content",
+      "upstreamSymbol": "client.Files.Content",
+      "reference": "api.md"
+    },
+    {
+      "name": "imagesCreateVariation",
+      "method": "POST",
+      "path": "images/variations",
+      "upstreamSymbol": "client.Images.NewVariation",
+      "reference": "api.md"
+    },
+    {
+      "name": "imagesEdit",
+      "method": "POST",
+      "path": "images/edits",
+      "upstreamSymbol": "client.Images.Edit",
+      "reference": "api.md"
+    },
+    {
+      "name": "imagesGenerate",
+      "method": "POST",
+      "path": "images/generations",
+      "upstreamSymbol": "client.Images.Generate",
+      "reference": "api.md"
+    },
+    {
+      "name": "contentProvenanceChecksCreate",
+      "method": "POST",
+      "path": "content_provenance_checks",
+      "upstreamSymbol": "client.ContentProvenanceChecks.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "audioTranscriptionsCreate",
+      "method": "POST",
+      "path": "audio/transcriptions",
+      "upstreamSymbol": "client.Audio.Transcriptions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "audioTranslationsCreate",
+      "method": "POST",
+      "path": "audio/translations",
+      "upstreamSymbol": "client.Audio.Translations.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "audioSpeechCreate",
+      "method": "POST",
+      "path": "audio/speech",
+      "upstreamSymbol": "client.Audio.Speech.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "audioVoicesCreate",
+      "method": "POST",
+      "path": "audio/voices",
+      "upstreamSymbol": "client.Audio.Voices.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "moderationsCreate",
+      "method": "POST",
+      "path": "moderations",
+      "upstreamSymbol": "client.Moderations.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "modelsRetrieve",
+      "method": "GET",
+      "path": "models/{model}",
+      "upstreamSymbol": "client.Models.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "modelsList",
+      "method": "GET",
+      "path": "models",
+      "upstreamSymbol": "client.Models.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "modelsDelete",
+      "method": "DELETE",
+      "path": "models/{model}",
+      "upstreamSymbol": "client.Models.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsCreate",
+      "method": "POST",
+      "path": "fine_tuning/jobs",
+      "upstreamSymbol": "client.FineTuning.Jobs.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsRetrieve",
+      "method": "GET",
+      "path": "fine_tuning/jobs/{fine_tuning_job_id}",
+      "upstreamSymbol": "client.FineTuning.Jobs.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsList",
+      "method": "GET",
+      "path": "fine_tuning/jobs",
+      "upstreamSymbol": "client.FineTuning.Jobs.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsCancel",
+      "method": "POST",
+      "path": "fine_tuning/jobs/{fine_tuning_job_id}/cancel",
+      "upstreamSymbol": "client.FineTuning.Jobs.Cancel",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsListEvents",
+      "method": "GET",
+      "path": "fine_tuning/jobs/{fine_tuning_job_id}/events",
+      "upstreamSymbol": "client.FineTuning.Jobs.ListEvents",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsPause",
+      "method": "POST",
+      "path": "fine_tuning/jobs/{fine_tuning_job_id}/pause",
+      "upstreamSymbol": "client.FineTuning.Jobs.Pause",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsResume",
+      "method": "POST",
+      "path": "fine_tuning/jobs/{fine_tuning_job_id}/resume",
+      "upstreamSymbol": "client.FineTuning.Jobs.Resume",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningJobsCheckpointsList",
+      "method": "GET",
+      "path": "fine_tuning/jobs/{fine_tuning_job_id}/checkpoints",
+      "upstreamSymbol": "client.FineTuning.Jobs.Checkpoints.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningCheckpointsPermissionsCreate",
+      "method": "POST",
+      "path": "fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions",
+      "upstreamSymbol": "client.FineTuning.Checkpoints.Permissions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningCheckpointsPermissionsRetrieve",
+      "method": "GET",
+      "path": "fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions",
+      "upstreamSymbol": "client.FineTuning.Checkpoints.Permissions.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningCheckpointsPermissionsList",
+      "method": "GET",
+      "path": "fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions",
+      "upstreamSymbol": "client.FineTuning.Checkpoints.Permissions.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningCheckpointsPermissionsDelete",
+      "method": "DELETE",
+      "path": "fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions/{permission_id}",
+      "upstreamSymbol": "client.FineTuning.Checkpoints.Permissions.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningAlphaGradersRun",
+      "method": "POST",
+      "path": "fine_tuning/alpha/graders/run",
+      "upstreamSymbol": "client.FineTuning.Alpha.Graders.Run",
+      "reference": "api.md"
+    },
+    {
+      "name": "fineTuningAlphaGradersValidate",
+      "method": "POST",
+      "path": "fine_tuning/alpha/graders/validate",
+      "upstreamSymbol": "client.FineTuning.Alpha.Graders.Validate",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresCreate",
+      "method": "POST",
+      "path": "vector_stores",
+      "upstreamSymbol": "client.VectorStores.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresRetrieve",
+      "method": "GET",
+      "path": "vector_stores/{vector_store_id}",
+      "upstreamSymbol": "client.VectorStores.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresUpdate",
+      "method": "POST",
+      "path": "vector_stores/{vector_store_id}",
+      "upstreamSymbol": "client.VectorStores.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresList",
+      "method": "GET",
+      "path": "vector_stores",
+      "upstreamSymbol": "client.VectorStores.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresDelete",
+      "method": "DELETE",
+      "path": "vector_stores/{vector_store_id}",
+      "upstreamSymbol": "client.VectorStores.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresSearch",
+      "method": "POST",
+      "path": "vector_stores/{vector_store_id}/search",
+      "upstreamSymbol": "client.VectorStores.Search",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFilesCreate",
+      "method": "POST",
+      "path": "vector_stores/{vector_store_id}/files",
+      "upstreamSymbol": "client.VectorStores.Files.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFilesRetrieve",
+      "method": "GET",
+      "path": "vector_stores/{vector_store_id}/files/{file_id}",
+      "upstreamSymbol": "client.VectorStores.Files.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFilesUpdate",
+      "method": "POST",
+      "path": "vector_stores/{vector_store_id}/files/{file_id}",
+      "upstreamSymbol": "client.VectorStores.Files.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFilesList",
+      "method": "GET",
+      "path": "vector_stores/{vector_store_id}/files",
+      "upstreamSymbol": "client.VectorStores.Files.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFilesDelete",
+      "method": "DELETE",
+      "path": "vector_stores/{vector_store_id}/files/{file_id}",
+      "upstreamSymbol": "client.VectorStores.Files.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFilesContent",
+      "method": "GET",
+      "path": "vector_stores/{vector_store_id}/files/{file_id}/content",
+      "upstreamSymbol": "client.VectorStores.Files.Content",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFileBatchesCreate",
+      "method": "POST",
+      "path": "vector_stores/{vector_store_id}/file_batches",
+      "upstreamSymbol": "client.VectorStores.FileBatches.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFileBatchesRetrieve",
+      "method": "GET",
+      "path": "vector_stores/{vector_store_id}/file_batches/{batch_id}",
+      "upstreamSymbol": "client.VectorStores.FileBatches.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFileBatchesCancel",
+      "method": "POST",
+      "path": "vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel",
+      "upstreamSymbol": "client.VectorStores.FileBatches.Cancel",
+      "reference": "api.md"
+    },
+    {
+      "name": "vectorStoresFileBatchesListFiles",
+      "method": "GET",
+      "path": "vector_stores/{vector_store_id}/file_batches/{batch_id}/files",
+      "upstreamSymbol": "client.VectorStores.FileBatches.ListFiles",
+      "reference": "api.md"
+    },
+    {
+      "name": "safetyCasesRetrieve",
+      "method": "GET",
+      "path": "safety/cases/{id}",
+      "upstreamSymbol": "client.Safety.Cases.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "safetyAlertsRetrieve",
+      "method": "GET",
+      "path": "safety/alerts/{id}",
+      "upstreamSymbol": "client.Safety.Alerts.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsCreate",
+      "method": "POST",
+      "path": "agents",
+      "upstreamSymbol": "client.Beta.Agents.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsRetrieve",
+      "method": "GET",
+      "path": "agents/{agent_id}",
+      "upstreamSymbol": "client.Beta.Agents.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsUpdate",
+      "method": "POST",
+      "path": "agents/{agent_id}",
+      "upstreamSymbol": "client.Beta.Agents.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsList",
+      "method": "GET",
+      "path": "agents",
+      "upstreamSymbol": "client.Beta.Agents.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsDelete",
+      "method": "DELETE",
+      "path": "agents/{agent_id}",
+      "upstreamSymbol": "client.Beta.Agents.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsCreate",
+      "method": "POST",
+      "path": "agents/environments",
+      "upstreamSymbol": "client.Beta.Agents.Environments.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsRetrieve",
+      "method": "GET",
+      "path": "agents/environments/{environment_id}",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsList",
+      "method": "GET",
+      "path": "agents/environments",
+      "upstreamSymbol": "client.Beta.Agents.Environments.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsFilesCreate",
+      "method": "POST",
+      "path": "agents/environments/{environment_id}/files",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Files.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsFilesList",
+      "method": "GET",
+      "path": "agents/environments/{environment_id}/files",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Files.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsTemplatesCreate",
+      "method": "POST",
+      "path": "agents/environments/templates",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Templates.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsTemplatesRetrieve",
+      "method": "GET",
+      "path": "agents/environments/templates/{environment_template_id}",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Templates.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsTemplatesUpdate",
+      "method": "POST",
+      "path": "agents/environments/templates/{environment_template_id}",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Templates.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsTemplatesList",
+      "method": "GET",
+      "path": "agents/environments/templates",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Templates.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsEnvironmentsTemplatesDelete",
+      "method": "DELETE",
+      "path": "agents/environments/templates/{environment_template_id}",
+      "upstreamSymbol": "client.Beta.Agents.Environments.Templates.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsCreate",
+      "method": "POST",
+      "path": "vaults",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsRetrieve",
+      "method": "GET",
+      "path": "vaults/{vault_id}",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsUpdate",
+      "method": "POST",
+      "path": "vaults/{vault_id}",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsList",
+      "method": "GET",
+      "path": "vaults",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsDelete",
+      "method": "DELETE",
+      "path": "vaults/{vault_id}",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsCredentialsCreate",
+      "method": "POST",
+      "path": "vaults/{vault_id}/credentials",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Credentials.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsCredentialsRetrieve",
+      "method": "GET",
+      "path": "vaults/{vault_id}/credentials/{credential_id}",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Credentials.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsCredentialsUpdate",
+      "method": "POST",
+      "path": "vaults/{vault_id}/credentials/{credential_id}",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Credentials.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsCredentialsList",
+      "method": "GET",
+      "path": "vaults/{vault_id}/credentials",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Credentials.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsVaultsCredentialsDelete",
+      "method": "DELETE",
+      "path": "vaults/{vault_id}/credentials/{credential_id}",
+      "upstreamSymbol": "client.Beta.Agents.Vaults.Credentials.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsCreate",
+      "method": "POST",
+      "path": "agents/sessions",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsRetrieve",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsUpdate",
+      "method": "POST",
+      "path": "agents/sessions/{session_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsList",
+      "method": "GET",
+      "path": "agents/sessions",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsDelete",
+      "method": "DELETE",
+      "path": "agents/sessions/{session_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsSubagentsRetrieve",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/subagents/{subagent_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Subagents.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsSubagentsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/subagents",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Subagents.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsSubagentsItemsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/subagents/{subagent_id}/items",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Subagents.Items.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsSubagentsTurnsRetrieve",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Subagents.Turns.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsSubagentsTurnsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/subagents/{subagent_id}/turns",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Subagents.Turns.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsSubagentsTurnsItemsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}/items",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Subagents.Turns.Items.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsArtifactsRetrieve",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/artifacts/{artifact_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Artifacts.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsArtifactsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/artifacts",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Artifacts.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsArtifactsDelete",
+      "method": "DELETE",
+      "path": "agents/sessions/{session_id}/artifacts/{artifact_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Artifacts.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsArtifactsContent",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/artifacts/{artifact_id}/content",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Artifacts.Content",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsItemsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/items",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Items.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsEventsCreate",
+      "method": "POST",
+      "path": "agents/sessions/{session_id}/events",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Events.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsEventsStream",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/events",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Events.Stream",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsTracesList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/traces",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Traces.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsTurnsRetrieve",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/turns/{turn_id}",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Turns.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsTurnsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/turns",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Turns.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAgentsSessionsTurnsItemsList",
+      "method": "GET",
+      "path": "agents/sessions/{session_id}/turns/{turn_id}/items",
+      "upstreamSymbol": "client.Beta.Agents.Sessions.Turns.Items.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaResponsesCreate",
+      "method": "POST",
+      "path": "responses?beta=true",
+      "upstreamSymbol": "client.Beta.Responses.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaResponsesRetrieve",
+      "method": "GET",
+      "path": "responses/{response_id}?beta=true",
+      "upstreamSymbol": "client.Beta.Responses.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaResponsesDelete",
+      "method": "DELETE",
+      "path": "responses/{response_id}?beta=true",
+      "upstreamSymbol": "client.Beta.Responses.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaResponsesCancel",
+      "method": "POST",
+      "path": "responses/{response_id}/cancel?beta=true",
+      "upstreamSymbol": "client.Beta.Responses.Cancel",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaResponsesCompact",
+      "method": "POST",
+      "path": "responses/compact?beta=true",
+      "upstreamSymbol": "client.Beta.Responses.Compact",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaResponsesInputItemsList",
+      "method": "GET",
+      "path": "responses/{response_id}/input_items?beta=true",
+      "upstreamSymbol": "client.Beta.Responses.InputItems.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaResponsesInputTokensCount",
+      "method": "POST",
+      "path": "responses/input_tokens?beta=true",
+      "upstreamSymbol": "client.Beta.Responses.InputTokens.Count",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaChatKitSessionsCreate",
+      "method": "POST",
+      "path": "chatkit/sessions",
+      "upstreamSymbol": "client.Beta.ChatKit.Sessions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaChatKitSessionsCancel",
+      "method": "POST",
+      "path": "chatkit/sessions/{session_id}/cancel",
+      "upstreamSymbol": "client.Beta.ChatKit.Sessions.Cancel",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaChatKitThreadsRetrieve",
+      "method": "GET",
+      "path": "chatkit/threads/{thread_id}",
+      "upstreamSymbol": "client.Beta.ChatKit.Threads.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaChatKitThreadsList",
+      "method": "GET",
+      "path": "chatkit/threads",
+      "upstreamSymbol": "client.Beta.ChatKit.Threads.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaChatKitThreadsDelete",
+      "method": "DELETE",
+      "path": "chatkit/threads/{thread_id}",
+      "upstreamSymbol": "client.Beta.ChatKit.Threads.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaChatKitThreadsListItems",
+      "method": "GET",
+      "path": "chatkit/threads/{thread_id}/items",
+      "upstreamSymbol": "client.Beta.ChatKit.Threads.ListItems",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAssistantsCreate",
+      "method": "POST",
+      "path": "assistants",
+      "upstreamSymbol": "client.Beta.Assistants.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAssistantsRetrieve",
+      "method": "GET",
+      "path": "assistants/{assistant_id}",
+      "upstreamSymbol": "client.Beta.Assistants.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAssistantsUpdate",
+      "method": "POST",
+      "path": "assistants/{assistant_id}",
+      "upstreamSymbol": "client.Beta.Assistants.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAssistantsList",
+      "method": "GET",
+      "path": "assistants",
+      "upstreamSymbol": "client.Beta.Assistants.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaAssistantsDelete",
+      "method": "DELETE",
+      "path": "assistants/{assistant_id}",
+      "upstreamSymbol": "client.Beta.Assistants.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsCreate",
+      "method": "POST",
+      "path": "threads",
+      "upstreamSymbol": "client.Beta.Threads.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRetrieve",
+      "method": "GET",
+      "path": "threads/{thread_id}",
+      "upstreamSymbol": "client.Beta.Threads.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsUpdate",
+      "method": "POST",
+      "path": "threads/{thread_id}",
+      "upstreamSymbol": "client.Beta.Threads.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsDelete",
+      "method": "DELETE",
+      "path": "threads/{thread_id}",
+      "upstreamSymbol": "client.Beta.Threads.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsCreateAndRun",
+      "method": "POST",
+      "path": "threads/runs",
+      "upstreamSymbol": "client.Beta.Threads.NewAndRun",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsCreate",
+      "method": "POST",
+      "path": "threads/{thread_id}/runs",
+      "upstreamSymbol": "client.Beta.Threads.Runs.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsRetrieve",
+      "method": "GET",
+      "path": "threads/{thread_id}/runs/{run_id}",
+      "upstreamSymbol": "client.Beta.Threads.Runs.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsUpdate",
+      "method": "POST",
+      "path": "threads/{thread_id}/runs/{run_id}",
+      "upstreamSymbol": "client.Beta.Threads.Runs.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsList",
+      "method": "GET",
+      "path": "threads/{thread_id}/runs",
+      "upstreamSymbol": "client.Beta.Threads.Runs.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsCancel",
+      "method": "POST",
+      "path": "threads/{thread_id}/runs/{run_id}/cancel",
+      "upstreamSymbol": "client.Beta.Threads.Runs.Cancel",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsSubmitToolOutputs",
+      "method": "POST",
+      "path": "threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
+      "upstreamSymbol": "client.Beta.Threads.Runs.SubmitToolOutputs",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsStepsRetrieve",
+      "method": "GET",
+      "path": "threads/{thread_id}/runs/{run_id}/steps/{step_id}",
+      "upstreamSymbol": "client.Beta.Threads.Runs.Steps.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsRunsStepsList",
+      "method": "GET",
+      "path": "threads/{thread_id}/runs/{run_id}/steps",
+      "upstreamSymbol": "client.Beta.Threads.Runs.Steps.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsMessagesCreate",
+      "method": "POST",
+      "path": "threads/{thread_id}/messages",
+      "upstreamSymbol": "client.Beta.Threads.Messages.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsMessagesRetrieve",
+      "method": "GET",
+      "path": "threads/{thread_id}/messages/{message_id}",
+      "upstreamSymbol": "client.Beta.Threads.Messages.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsMessagesUpdate",
+      "method": "POST",
+      "path": "threads/{thread_id}/messages/{message_id}",
+      "upstreamSymbol": "client.Beta.Threads.Messages.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsMessagesList",
+      "method": "GET",
+      "path": "threads/{thread_id}/messages",
+      "upstreamSymbol": "client.Beta.Threads.Messages.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "betaThreadsMessagesDelete",
+      "method": "DELETE",
+      "path": "threads/{thread_id}/messages/{message_id}",
+      "upstreamSymbol": "client.Beta.Threads.Messages.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "batchesCreate",
+      "method": "POST",
+      "path": "batches",
+      "upstreamSymbol": "client.Batches.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "batchesRetrieve",
+      "method": "GET",
+      "path": "batches/{batch_id}",
+      "upstreamSymbol": "client.Batches.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "batchesList",
+      "method": "GET",
+      "path": "batches",
+      "upstreamSymbol": "client.Batches.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "batchesCancel",
+      "method": "POST",
+      "path": "batches/{batch_id}/cancel",
+      "upstreamSymbol": "client.Batches.Cancel",
+      "reference": "api.md"
+    },
+    {
+      "name": "uploadsCreate",
+      "method": "POST",
+      "path": "uploads",
+      "upstreamSymbol": "client.Uploads.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "uploadsCancel",
+      "method": "POST",
+      "path": "uploads/{upload_id}/cancel",
+      "upstreamSymbol": "client.Uploads.Cancel",
+      "reference": "api.md"
+    },
+    {
+      "name": "uploadsComplete",
+      "method": "POST",
+      "path": "uploads/{upload_id}/complete",
+      "upstreamSymbol": "client.Uploads.Complete",
+      "reference": "api.md"
+    },
+    {
+      "name": "uploadsPartsCreate",
+      "method": "POST",
+      "path": "uploads/{upload_id}/parts",
+      "upstreamSymbol": "client.Uploads.Parts.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationAuditLogsList",
+      "method": "GET",
+      "path": "organization/audit_logs",
+      "upstreamSymbol": "client.Admin.Organization.AuditLogs.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationAdminAPIKeysCreate",
+      "method": "POST",
+      "path": "organization/admin_api_keys",
+      "upstreamSymbol": "client.Admin.Organization.AdminAPIKeys.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationAdminAPIKeysRetrieve",
+      "method": "GET",
+      "path": "organization/admin_api_keys/{key_id}",
+      "upstreamSymbol": "client.Admin.Organization.AdminAPIKeys.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationAdminAPIKeysList",
+      "method": "GET",
+      "path": "organization/admin_api_keys",
+      "upstreamSymbol": "client.Admin.Organization.AdminAPIKeys.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationAdminAPIKeysDelete",
+      "method": "DELETE",
+      "path": "organization/admin_api_keys/{key_id}",
+      "upstreamSymbol": "client.Admin.Organization.AdminAPIKeys.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageAudioSpeeches",
+      "method": "GET",
+      "path": "organization/usage/audio_speeches",
+      "upstreamSymbol": "client.Admin.Organization.Usage.AudioSpeeches",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageAudioTranscriptions",
+      "method": "GET",
+      "path": "organization/usage/audio_transcriptions",
+      "upstreamSymbol": "client.Admin.Organization.Usage.AudioTranscriptions",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageCodeInterpreterSessions",
+      "method": "GET",
+      "path": "organization/usage/code_interpreter_sessions",
+      "upstreamSymbol": "client.Admin.Organization.Usage.CodeInterpreterSessions",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageCompletions",
+      "method": "GET",
+      "path": "organization/usage/completions",
+      "upstreamSymbol": "client.Admin.Organization.Usage.Completions",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageCosts",
+      "method": "GET",
+      "path": "organization/costs",
+      "upstreamSymbol": "client.Admin.Organization.Usage.Costs",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageEmbeddings",
+      "method": "GET",
+      "path": "organization/usage/embeddings",
+      "upstreamSymbol": "client.Admin.Organization.Usage.Embeddings",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageFileSearchCalls",
+      "method": "GET",
+      "path": "organization/usage/file_search_calls",
+      "upstreamSymbol": "client.Admin.Organization.Usage.FileSearchCalls",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageImages",
+      "method": "GET",
+      "path": "organization/usage/images",
+      "upstreamSymbol": "client.Admin.Organization.Usage.Images",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageModerations",
+      "method": "GET",
+      "path": "organization/usage/moderations",
+      "upstreamSymbol": "client.Admin.Organization.Usage.Moderations",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageVectorStores",
+      "method": "GET",
+      "path": "organization/usage/vector_stores",
+      "upstreamSymbol": "client.Admin.Organization.Usage.VectorStores",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsageWebSearchCalls",
+      "method": "GET",
+      "path": "organization/usage/web_search_calls",
+      "upstreamSymbol": "client.Admin.Organization.Usage.WebSearchCalls",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationInvitesCreate",
+      "method": "POST",
+      "path": "organization/invites",
+      "upstreamSymbol": "client.Admin.Organization.Invites.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationInvitesRetrieve",
+      "method": "GET",
+      "path": "organization/invites/{invite_id}",
+      "upstreamSymbol": "client.Admin.Organization.Invites.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationInvitesList",
+      "method": "GET",
+      "path": "organization/invites",
+      "upstreamSymbol": "client.Admin.Organization.Invites.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationInvitesDelete",
+      "method": "DELETE",
+      "path": "organization/invites/{invite_id}",
+      "upstreamSymbol": "client.Admin.Organization.Invites.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersRetrieve",
+      "method": "GET",
+      "path": "organization/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Users.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersUpdate",
+      "method": "POST",
+      "path": "organization/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Users.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersList",
+      "method": "GET",
+      "path": "organization/users",
+      "upstreamSymbol": "client.Admin.Organization.Users.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersDelete",
+      "method": "DELETE",
+      "path": "organization/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Users.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersRolesCreate",
+      "method": "POST",
+      "path": "organization/users/{user_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Users.Roles.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersRolesRetrieve",
+      "method": "GET",
+      "path": "organization/users/{user_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Users.Roles.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersRolesList",
+      "method": "GET",
+      "path": "organization/users/{user_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Users.Roles.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationUsersRolesDelete",
+      "method": "DELETE",
+      "path": "organization/users/{user_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Users.Roles.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsCreate",
+      "method": "POST",
+      "path": "organization/groups",
+      "upstreamSymbol": "client.Admin.Organization.Groups.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsRetrieve",
+      "method": "GET",
+      "path": "organization/groups/{group_id}",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsUpdate",
+      "method": "POST",
+      "path": "organization/groups/{group_id}",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsList",
+      "method": "GET",
+      "path": "organization/groups",
+      "upstreamSymbol": "client.Admin.Organization.Groups.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsDelete",
+      "method": "DELETE",
+      "path": "organization/groups/{group_id}",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsUsersCreate",
+      "method": "POST",
+      "path": "organization/groups/{group_id}/users",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Users.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsUsersRetrieve",
+      "method": "GET",
+      "path": "organization/groups/{group_id}/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Users.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsUsersList",
+      "method": "GET",
+      "path": "organization/groups/{group_id}/users",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Users.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsUsersDelete",
+      "method": "DELETE",
+      "path": "organization/groups/{group_id}/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Users.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsRolesCreate",
+      "method": "POST",
+      "path": "organization/groups/{group_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Roles.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsRolesRetrieve",
+      "method": "GET",
+      "path": "organization/groups/{group_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Roles.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsRolesList",
+      "method": "GET",
+      "path": "organization/groups/{group_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Roles.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationGroupsRolesDelete",
+      "method": "DELETE",
+      "path": "organization/groups/{group_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Groups.Roles.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationRolesCreate",
+      "method": "POST",
+      "path": "organization/roles",
+      "upstreamSymbol": "client.Admin.Organization.Roles.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationRolesRetrieve",
+      "method": "GET",
+      "path": "organization/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Roles.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationRolesUpdate",
+      "method": "POST",
+      "path": "organization/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Roles.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationRolesList",
+      "method": "GET",
+      "path": "organization/roles",
+      "upstreamSymbol": "client.Admin.Organization.Roles.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationRolesDelete",
+      "method": "DELETE",
+      "path": "organization/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Roles.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationDataRetentionRetrieve",
+      "method": "GET",
+      "path": "organization/data_retention",
+      "upstreamSymbol": "client.Admin.Organization.DataRetention.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationDataRetentionUpdate",
+      "method": "POST",
+      "path": "organization/data_retention",
+      "upstreamSymbol": "client.Admin.Organization.DataRetention.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationExternalStorageCreate",
+      "method": "POST",
+      "path": "organization/external_storage",
+      "upstreamSymbol": "client.Admin.Organization.ExternalStorage.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationExternalStorageRetrieve",
+      "method": "GET",
+      "path": "organization/external_storage/{external_storage_id}",
+      "upstreamSymbol": "client.Admin.Organization.ExternalStorage.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationExternalStorageList",
+      "method": "GET",
+      "path": "organization/external_storage",
+      "upstreamSymbol": "client.Admin.Organization.ExternalStorage.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationExternalStorageDelete",
+      "method": "DELETE",
+      "path": "organization/external_storage/{external_storage_id}",
+      "upstreamSymbol": "client.Admin.Organization.ExternalStorage.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationExternalStorageValidate",
+      "method": "POST",
+      "path": "organization/external_storage/{external_storage_id}/validate",
+      "upstreamSymbol": "client.Admin.Organization.ExternalStorage.Validate",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendLimitRetrieve",
+      "method": "GET",
+      "path": "organization/spend_limit",
+      "upstreamSymbol": "client.Admin.Organization.SpendLimit.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendLimitUpdate",
+      "method": "POST",
+      "path": "organization/spend_limit",
+      "upstreamSymbol": "client.Admin.Organization.SpendLimit.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendLimitDelete",
+      "method": "DELETE",
+      "path": "organization/spend_limit",
+      "upstreamSymbol": "client.Admin.Organization.SpendLimit.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendAlertsCreate",
+      "method": "POST",
+      "path": "organization/spend_alerts",
+      "upstreamSymbol": "client.Admin.Organization.SpendAlerts.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendAlertsRetrieve",
+      "method": "GET",
+      "path": "organization/spend_alerts/{alert_id}",
+      "upstreamSymbol": "client.Admin.Organization.SpendAlerts.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendAlertsUpdate",
+      "method": "POST",
+      "path": "organization/spend_alerts/{alert_id}",
+      "upstreamSymbol": "client.Admin.Organization.SpendAlerts.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendAlertsList",
+      "method": "GET",
+      "path": "organization/spend_alerts",
+      "upstreamSymbol": "client.Admin.Organization.SpendAlerts.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationSpendAlertsDelete",
+      "method": "DELETE",
+      "path": "organization/spend_alerts/{alert_id}",
+      "upstreamSymbol": "client.Admin.Organization.SpendAlerts.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationCertificatesCreate",
+      "method": "POST",
+      "path": "organization/certificates",
+      "upstreamSymbol": "client.Admin.Organization.Certificates.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationCertificatesRetrieve",
+      "method": "GET",
+      "path": "organization/certificates/{certificate_id}",
+      "upstreamSymbol": "client.Admin.Organization.Certificates.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationCertificatesUpdate",
+      "method": "POST",
+      "path": "organization/certificates/{certificate_id}",
+      "upstreamSymbol": "client.Admin.Organization.Certificates.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationCertificatesList",
+      "method": "GET",
+      "path": "organization/certificates",
+      "upstreamSymbol": "client.Admin.Organization.Certificates.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationCertificatesDelete",
+      "method": "DELETE",
+      "path": "organization/certificates/{certificate_id}",
+      "upstreamSymbol": "client.Admin.Organization.Certificates.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationCertificatesActivate",
+      "method": "POST",
+      "path": "organization/certificates/activate",
+      "upstreamSymbol": "client.Admin.Organization.Certificates.Activate",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationCertificatesDeactivate",
+      "method": "POST",
+      "path": "organization/certificates/deactivate",
+      "upstreamSymbol": "client.Admin.Organization.Certificates.Deactivate",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsCreate",
+      "method": "POST",
+      "path": "organization/projects",
+      "upstreamSymbol": "client.Admin.Organization.Projects.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsList",
+      "method": "GET",
+      "path": "organization/projects",
+      "upstreamSymbol": "client.Admin.Organization.Projects.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsArchive",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/archive",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Archive",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersCreate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/users",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersList",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/users",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersDelete",
+      "method": "DELETE",
+      "path": "organization/projects/{project_id}/users/{user_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersRolesCreate",
+      "method": "POST",
+      "path": "projects/{project_id}/users/{user_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.Roles.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersRolesRetrieve",
+      "method": "GET",
+      "path": "projects/{project_id}/users/{user_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.Roles.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersRolesList",
+      "method": "GET",
+      "path": "projects/{project_id}/users/{user_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.Roles.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsUsersRolesDelete",
+      "method": "DELETE",
+      "path": "projects/{project_id}/users/{user_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Users.Roles.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsServiceAccountsCreate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/service_accounts",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ServiceAccounts.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsServiceAccountsRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/service_accounts/{service_account_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ServiceAccounts.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsServiceAccountsUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/service_accounts/{service_account_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ServiceAccounts.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsServiceAccountsList",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/service_accounts",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ServiceAccounts.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsServiceAccountsDelete",
+      "method": "DELETE",
+      "path": "organization/projects/{project_id}/service_accounts/{service_account_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ServiceAccounts.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsServiceAccountsAPIKeysCreate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/service_accounts/{service_account_id}/api_keys",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ServiceAccounts.APIKeys.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsAPIKeysRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/api_keys/{api_key_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.APIKeys.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsAPIKeysList",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/api_keys",
+      "upstreamSymbol": "client.Admin.Organization.Projects.APIKeys.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsAPIKeysDelete",
+      "method": "DELETE",
+      "path": "organization/projects/{project_id}/api_keys/{api_key_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.APIKeys.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRateLimitsListRateLimits",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/rate_limits",
+      "upstreamSymbol": "client.Admin.Organization.Projects.RateLimits.ListRateLimits",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRateLimitsUpdateRateLimit",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/rate_limits/{rate_limit_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.RateLimits.UpdateRateLimit",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsModelPermissionsRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/model_permissions",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ModelPermissions.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsModelPermissionsUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/model_permissions",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ModelPermissions.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsModelPermissionsDelete",
+      "method": "DELETE",
+      "path": "organization/projects/{project_id}/model_permissions",
+      "upstreamSymbol": "client.Admin.Organization.Projects.ModelPermissions.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsHostedToolPermissionsRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/hosted_tool_permissions",
+      "upstreamSymbol": "client.Admin.Organization.Projects.HostedToolPermissions.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsHostedToolPermissionsUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/hosted_tool_permissions",
+      "upstreamSymbol": "client.Admin.Organization.Projects.HostedToolPermissions.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsCreate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/groups",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/groups/{group_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsList",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/groups",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsDelete",
+      "method": "DELETE",
+      "path": "organization/projects/{project_id}/groups/{group_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsRolesCreate",
+      "method": "POST",
+      "path": "projects/{project_id}/groups/{group_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.Roles.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsRolesRetrieve",
+      "method": "GET",
+      "path": "projects/{project_id}/groups/{group_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.Roles.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsRolesList",
+      "method": "GET",
+      "path": "projects/{project_id}/groups/{group_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.Roles.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsGroupsRolesDelete",
+      "method": "DELETE",
+      "path": "projects/{project_id}/groups/{group_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Groups.Roles.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRolesCreate",
+      "method": "POST",
+      "path": "projects/{project_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Roles.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRolesRetrieve",
+      "method": "GET",
+      "path": "projects/{project_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Roles.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRolesUpdate",
+      "method": "POST",
+      "path": "projects/{project_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Roles.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRolesList",
+      "method": "GET",
+      "path": "projects/{project_id}/roles",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Roles.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsRolesDelete",
+      "method": "DELETE",
+      "path": "projects/{project_id}/roles/{role_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Roles.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsDataRetentionRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/data_retention",
+      "upstreamSymbol": "client.Admin.Organization.Projects.DataRetention.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsDataRetentionUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/data_retention",
+      "upstreamSymbol": "client.Admin.Organization.Projects.DataRetention.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendLimitRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/spend_limit",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendLimit.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendLimitUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/spend_limit",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendLimit.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendLimitDelete",
+      "method": "DELETE",
+      "path": "organization/projects/{project_id}/spend_limit",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendLimit.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendAlertsCreate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/spend_alerts",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendAlerts.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendAlertsRetrieve",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/spend_alerts/{alert_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendAlerts.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendAlertsUpdate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/spend_alerts/{alert_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendAlerts.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendAlertsList",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/spend_alerts",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendAlerts.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsSpendAlertsDelete",
+      "method": "DELETE",
+      "path": "organization/projects/{project_id}/spend_alerts/{alert_id}",
+      "upstreamSymbol": "client.Admin.Organization.Projects.SpendAlerts.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsCertificatesList",
+      "method": "GET",
+      "path": "organization/projects/{project_id}/certificates",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Certificates.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsCertificatesActivate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/certificates/activate",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Certificates.Activate",
+      "reference": "api.md"
+    },
+    {
+      "name": "adminOrganizationProjectsCertificatesDeactivate",
+      "method": "POST",
+      "path": "organization/projects/{project_id}/certificates/deactivate",
+      "upstreamSymbol": "client.Admin.Organization.Projects.Certificates.Deactivate",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersCreate",
+      "method": "POST",
+      "path": "containers",
+      "upstreamSymbol": "client.Containers.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersRetrieve",
+      "method": "GET",
+      "path": "containers/{container_id}",
+      "upstreamSymbol": "client.Containers.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersList",
+      "method": "GET",
+      "path": "containers",
+      "upstreamSymbol": "client.Containers.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersDelete",
+      "method": "DELETE",
+      "path": "containers/{container_id}",
+      "upstreamSymbol": "client.Containers.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersFilesCreate",
+      "method": "POST",
+      "path": "containers/{container_id}/files",
+      "upstreamSymbol": "client.Containers.Files.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersFilesRetrieve",
+      "method": "GET",
+      "path": "containers/{container_id}/files/{file_id}",
+      "upstreamSymbol": "client.Containers.Files.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersFilesList",
+      "method": "GET",
+      "path": "containers/{container_id}/files",
+      "upstreamSymbol": "client.Containers.Files.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersFilesDelete",
+      "method": "DELETE",
+      "path": "containers/{container_id}/files/{file_id}",
+      "upstreamSymbol": "client.Containers.Files.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "containersFilesContentRetrieve",
+      "method": "GET",
+      "path": "containers/{container_id}/files/{file_id}/content",
+      "upstreamSymbol": "client.Containers.Files.Content.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsCreate",
+      "method": "POST",
+      "path": "skills",
+      "upstreamSymbol": "client.Skills.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsRetrieve",
+      "method": "GET",
+      "path": "skills/{skill_id}",
+      "upstreamSymbol": "client.Skills.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsUpdate",
+      "method": "POST",
+      "path": "skills/{skill_id}",
+      "upstreamSymbol": "client.Skills.Update",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsList",
+      "method": "GET",
+      "path": "skills",
+      "upstreamSymbol": "client.Skills.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsDelete",
+      "method": "DELETE",
+      "path": "skills/{skill_id}",
+      "upstreamSymbol": "client.Skills.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsContentRetrieve",
+      "method": "GET",
+      "path": "skills/{skill_id}/content",
+      "upstreamSymbol": "client.Skills.Content.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsVersionsCreate",
+      "method": "POST",
+      "path": "skills/{skill_id}/versions",
+      "upstreamSymbol": "client.Skills.Versions.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsVersionsRetrieve",
+      "method": "GET",
+      "path": "skills/{skill_id}/versions/{version}",
+      "upstreamSymbol": "client.Skills.Versions.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsVersionsList",
+      "method": "GET",
+      "path": "skills/{skill_id}/versions",
+      "upstreamSymbol": "client.Skills.Versions.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsVersionsDelete",
+      "method": "DELETE",
+      "path": "skills/{skill_id}/versions/{version}",
+      "upstreamSymbol": "client.Skills.Versions.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "skillsVersionsContentRetrieve",
+      "method": "GET",
+      "path": "skills/{skill_id}/versions/{version}/content",
+      "upstreamSymbol": "client.Skills.Versions.Content.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosCreate",
+      "method": "POST",
+      "path": "videos",
+      "upstreamSymbol": "client.Videos.New",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosRetrieve",
+      "method": "GET",
+      "path": "videos/{video_id}",
+      "upstreamSymbol": "client.Videos.Get",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosList",
+      "method": "GET",
+      "path": "videos",
+      "upstreamSymbol": "client.Videos.List",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosDelete",
+      "method": "DELETE",
+      "path": "videos/{video_id}",
+      "upstreamSymbol": "client.Videos.Delete",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosCreateCharacter",
+      "method": "POST",
+      "path": "videos/characters",
+      "upstreamSymbol": "client.Videos.NewCharacter",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosDownloadContent",
+      "method": "GET",
+      "path": "videos/{video_id}/content",
+      "upstreamSymbol": "client.Videos.DownloadContent",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosEdit",
+      "method": "POST",
+      "path": "videos/edits",
+      "upstreamSymbol": "client.Videos.Edit",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosExtend",
+      "method": "POST",
+      "path": "videos/extensions",
+      "upstreamSymbol": "client.Videos.Extend",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosGetCharacter",
+      "method": "GET",
+      "path": "videos/characters/{character_id}",
+      "upstreamSymbol": "client.Videos.GetCharacter",
+      "reference": "api.md"
+    },
+    {
+      "name": "videosRemix",
+      "method": "POST",
+      "path": "videos/{video_id}/remix",
+      "upstreamSymbol": "client.Videos.Remix",
+      "reference": "api.md"
+    },
+    {
+      "name": "conversationsCreate",
+      "method": "POST",
+      "path": "conversations",
+      "upstreamSymbol": "client.Conversations.New",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "conversationsRetrieve",
+      "method": "GET",
+      "path": "conversations/{conversation_id}",
+      "upstreamSymbol": "client.Conversations.Get",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "conversationsUpdate",
+      "method": "POST",
+      "path": "conversations/{conversation_id}",
+      "upstreamSymbol": "client.Conversations.Update",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "conversationsDelete",
+      "method": "DELETE",
+      "path": "conversations/{conversation_id}",
+      "upstreamSymbol": "client.Conversations.Delete",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "conversationsItemsCreate",
+      "method": "POST",
+      "path": "conversations/{conversation_id}/items",
+      "upstreamSymbol": "client.Conversations.Items.New",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "conversationsItemsRetrieve",
+      "method": "GET",
+      "path": "conversations/{conversation_id}/items/{item_id}",
+      "upstreamSymbol": "client.Conversations.Items.Get",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "conversationsItemsList",
+      "method": "GET",
+      "path": "conversations/{conversation_id}/items",
+      "upstreamSymbol": "client.Conversations.Items.List",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "conversationsItemsDelete",
+      "method": "DELETE",
+      "path": "conversations/{conversation_id}/items/{item_id}",
+      "upstreamSymbol": "client.Conversations.Items.Delete",
+      "reference": "conversations/api.md"
+    },
+    {
+      "name": "liveCreate",
+      "method": "POST",
+      "path": "live/sessions",
+      "upstreamSymbol": "client.Live.New",
+      "reference": "live/api.md"
+    },
+    {
+      "name": "liveSessionsAccept",
+      "method": "POST",
+      "path": "live/sessions/{session_id}/accept",
+      "upstreamSymbol": "client.Live.Sessions.Accept",
+      "reference": "live/api.md"
+    },
+    {
+      "name": "liveSessionsDownloadRecording",
+      "method": "GET",
+      "path": "live/sessions/{session_id}/content",
+      "upstreamSymbol": "client.Live.Sessions.DownloadRecording",
+      "reference": "live/api.md"
+    },
+    {
+      "name": "liveSessionsFork",
+      "method": "POST",
+      "path": "live/sessions/{session_id}/fork",
+      "upstreamSymbol": "client.Live.Sessions.Fork",
+      "reference": "live/api.md"
+    },
+    {
+      "name": "liveSessionsHangup",
+      "method": "POST",
+      "path": "live/sessions/{session_id}/hangup",
+      "upstreamSymbol": "client.Live.Sessions.Hangup",
+      "reference": "live/api.md"
+    },
+    {
+      "name": "liveSessionsRefer",
+      "method": "POST",
+      "path": "live/sessions/{session_id}/refer",
+      "upstreamSymbol": "client.Live.Sessions.Refer",
+      "reference": "live/api.md"
+    },
+    {
+      "name": "liveSessionsReject",
+      "method": "POST",
+      "path": "live/sessions/{session_id}/reject",
+      "upstreamSymbol": "client.Live.Sessions.Reject",
+      "reference": "live/api.md"
+    },
+    {
+      "name": "realtimeClientSecretsCreate",
+      "method": "POST",
+      "path": "realtime/client_secrets",
+      "upstreamSymbol": "client.Realtime.ClientSecrets.New",
+      "reference": "realtime/api.md"
+    },
+    {
+      "name": "realtimeCallsCreate",
+      "method": "POST",
+      "path": "realtime/calls",
+      "upstreamSymbol": "client.Realtime.Calls.New",
+      "reference": "realtime/api.md"
+    },
+    {
+      "name": "realtimeCallsAccept",
+      "method": "POST",
+      "path": "realtime/calls/{call_id}/accept",
+      "upstreamSymbol": "client.Realtime.Calls.Accept",
+      "reference": "realtime/api.md"
+    },
+    {
+      "name": "realtimeCallsHangup",
+      "method": "POST",
+      "path": "realtime/calls/{call_id}/hangup",
+      "upstreamSymbol": "client.Realtime.Calls.Hangup",
+      "reference": "realtime/api.md"
+    },
+    {
+      "name": "realtimeCallsRefer",
+      "method": "POST",
+      "path": "realtime/calls/{call_id}/refer",
+      "upstreamSymbol": "client.Realtime.Calls.Refer",
+      "reference": "realtime/api.md"
+    },
+    {
+      "name": "realtimeCallsReject",
+      "method": "POST",
+      "path": "realtime/calls/{call_id}/reject",
+      "upstreamSymbol": "client.Realtime.Calls.Reject",
+      "reference": "realtime/api.md"
+    },
+    {
+      "name": "realtimeTranslationsClientSecretsCreate",
+      "method": "POST",
+      "path": "realtime/translations/client_secrets",
+      "upstreamSymbol": "client.Realtime.Translations.ClientSecrets.New",
+      "reference": "realtime/api.md"
+    },
+    {
+      "name": "responsesCreate",
+      "method": "POST",
+      "path": "responses",
+      "upstreamSymbol": "client.Responses.New",
+      "reference": "responses/api.md"
+    },
+    {
+      "name": "responsesRetrieve",
+      "method": "GET",
+      "path": "responses/{response_id}",
+      "upstreamSymbol": "client.Responses.Get",
+      "reference": "responses/api.md"
+    },
+    {
+      "name": "responsesDelete",
+      "method": "DELETE",
+      "path": "responses/{response_id}",
+      "upstreamSymbol": "client.Responses.Delete",
+      "reference": "responses/api.md"
+    },
+    {
+      "name": "responsesCancel",
+      "method": "POST",
+      "path": "responses/{response_id}/cancel",
+      "upstreamSymbol": "client.Responses.Cancel",
+      "reference": "responses/api.md"
+    },
+    {
+      "name": "responsesCompact",
+      "method": "POST",
+      "path": "responses/compact",
+      "upstreamSymbol": "client.Responses.Compact",
+      "reference": "responses/api.md"
+    },
+    {
+      "name": "responsesInputItemsList",
+      "method": "GET",
+      "path": "responses/{response_id}/input_items",
+      "upstreamSymbol": "client.Responses.InputItems.List",
+      "reference": "responses/api.md"
+    },
+    {
+      "name": "responsesInputTokensCount",
+      "method": "POST",
+      "path": "responses/input_tokens",
+      "upstreamSymbol": "client.Responses.InputTokens.Count",
+      "reference": "responses/api.md"
+    },
+    {
+      "name": "webhooksCreate",
+      "method": "POST",
+      "path": "webhook_endpoints",
+      "upstreamSymbol": "client.Webhooks.New",
+      "reference": "webhooks/api.md"
+    },
+    {
+      "name": "webhooksRetrieve",
+      "method": "GET",
+      "path": "webhook_endpoints/{webhook_endpoint_id}",
+      "upstreamSymbol": "client.Webhooks.Get",
+      "reference": "webhooks/api.md"
+    },
+    {
+      "name": "webhooksUpdate",
+      "method": "POST",
+      "path": "webhook_endpoints/{webhook_endpoint_id}",
+      "upstreamSymbol": "client.Webhooks.Update",
+      "reference": "webhooks/api.md"
+    },
+    {
+      "name": "webhooksList",
+      "method": "GET",
+      "path": "webhook_endpoints",
+      "upstreamSymbol": "client.Webhooks.List",
+      "reference": "webhooks/api.md"
+    },
+    {
+      "name": "webhooksDelete",
+      "method": "DELETE",
+      "path": "webhook_endpoints/{webhook_endpoint_id}",
+      "upstreamSymbol": "client.Webhooks.Delete",
+      "reference": "webhooks/api.md"
+    },
+    {
+      "name": "webhooksRotateSecret",
+      "method": "POST",
+      "path": "webhook_endpoints/{webhook_endpoint_id}/rotate_secret",
+      "upstreamSymbol": "client.Webhooks.RotateSecret",
+      "reference": "webhooks/api.md"
+    },
+    {
+      "name": "webhooksTest",
+      "method": "POST",
+      "path": "webhook_endpoints/{webhook_endpoint_id}/test",
+      "upstreamSymbol": "client.Webhooks.Test",
+      "reference": "webhooks/api.md"
+    },
+    {
+      "name": "webhooksEventTypesList",
+      "method": "GET",
+      "path": "webhook_event_types",
+      "upstreamSymbol": "client.Webhooks.EventTypes.List",
+      "reference": "webhooks/api.md"
+    }
+  ]
+}

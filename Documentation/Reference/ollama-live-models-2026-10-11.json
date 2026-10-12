@@ -1,0 +1,73 @@
+[
+  {
+    "name": "all-minilm:22m",
+    "model": "all-minilm:22m",
+    "modified_at": "2026-10-11T20:23:38.201106165-04:00",
+    "size": 45960996,
+    "digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "bert",
+      "families": [
+        "bert"
+      ],
+      "parameter_size": "23M",
+      "quantization_level": "F16",
+      "context_length": 512,
+      "embedding_length": 384
+    },
+    "capabilities": [
+      "embedding"
+    ]
+  },
+  {
+    "name": "gpt-oss:latest",
+    "model": "gpt-oss:latest",
+    "modified_at": "2026-09-25T00:25:23.066288037-04:00",
+    "size": 13793441244,
+    "digest": "17052f91a42e97930aa6e28a6c6c06a983e6a58dbb00434885a0cf5313e376f7",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gptoss",
+      "families": [
+        "gptoss"
+      ],
+      "parameter_size": "20.9B",
+      "quantization_level": "MXFP4",
+      "context_length": 131072,
+      "embedding_length": 2880
+    },
+    "capabilities": [
+      "completion",
+      "tools",
+      "thinking"
+    ]
+  },
+  {
+    "name": "gemma4:26b",
+    "model": "gemma4:26b",
+    "modified_at": "2026-09-22T23:36:20.335401027-04:00",
+    "size": 18604148513,
+    "digest": "08ae7ec1744bd7f451c4a530afb39d2673ad9d07a8369b8a33a3613b41212a68",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gemma4",
+      "families": [
+        "gemma4"
+      ],
+      "parameter_size": "25.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 2816
+    },
+    "capabilities": [
+      "completion",
+      "tools",
+      "thinking",
+      "vision"
+    ]
+  }
+]

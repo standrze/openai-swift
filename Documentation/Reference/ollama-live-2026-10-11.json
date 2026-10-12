@@ -1,0 +1,134 @@
+{
+  "baseURL" : "http:\/\/localhost:11434\/v1",
+  "checks" : [
+    {
+      "detail" : "0.31.1",
+      "name" : "server\/version",
+      "passed" : true,
+      "seconds" : 0.014819979667663574
+    },
+    {
+      "detail" : "Listed and retrieved 6 models, including namespaced IDs",
+      "name" : "models.list\/retrieve",
+      "passed" : true,
+      "seconds" : 0.330157995223999
+    },
+    {
+      "detail" : "SWIFT_OK",
+      "name" : "chat.create",
+      "passed" : true,
+      "seconds" : 4.079812049865723
+    },
+    {
+      "detail" : "1 server reasoning fields retained",
+      "name" : "chat\/reasoning-fields",
+      "passed" : true,
+      "seconds" : 0.36565101146698
+    },
+    {
+      "detail" : "16 chunks; One, two, three, four, five.",
+      "name" : "chat.stream\/usage\/accumulator",
+      "passed" : true,
+      "seconds" : 0.4612969160079956
+    },
+    {
+      "detail" : "Cancelled an active generation; subsequent request succeeded",
+      "name" : "chat.stream\/cancellation",
+      "passed" : true,
+      "seconds" : 0.2650120258331299
+    },
+    {
+      "detail" : "Paris.",
+      "name" : "completions.create\/stream",
+      "passed" : true,
+      "seconds" : 1.417931079864502
+    },
+    {
+      "detail" : "SWIFT_RESPONSE_OK",
+      "name" : "responses.create",
+      "passed" : true,
+      "seconds" : 0.4534330368041992
+    },
+    {
+      "detail" : "67 events; Hello everyone, nice to meet.",
+      "name" : "responses.stream\/accumulator",
+      "passed" : true,
+      "seconds" : 0.9088259935379028
+    },
+    {
+      "detail" : "{\"count\":3,\"status\":\"ok\"}",
+      "name" : "structured-output\/json-schema",
+      "passed" : true,
+      "seconds" : 0.8070449829101562
+    },
+    {
+      "detail" : "HTTP 404 retained as APIError",
+      "name" : "error\/missing-model",
+      "passed" : true,
+      "seconds" : 0.002659916877746582
+    },
+    {
+      "detail" : "temperature({\"city\":\"Ashburn\"}); The current temperature in Ashburn is **72°F**.",
+      "name" : "chat.tools\/replay",
+      "passed" : true,
+      "seconds" : 1.0085890293121338
+    },
+    {
+      "detail" : "temperature({\"city\":\"Ashburn\"})",
+      "name" : "chat.tools\/stream",
+      "passed" : true,
+      "seconds" : 0.5062199831008911
+    },
+    {
+      "detail" : "The current temperature in Ashburn is **72°F**.",
+      "name" : "responses.tools\/replay",
+      "passed" : true,
+      "seconds" : 0.93796706199646
+    },
+    {
+      "detail" : "6 models decoded by generated schemas",
+      "name" : "generated\/models",
+      "passed" : true,
+      "seconds" : 0.006916046142578125
+    },
+    {
+      "detail" : "GENERATED_OK",
+      "name" : "generated\/chat",
+      "passed" : true,
+      "seconds" : 0.4156379699707031
+    },
+    {
+      "detail" : "GENERATED_RESPONSE_OK",
+      "name" : "generated\/responses",
+      "passed" : true,
+      "seconds" : 0.4015510082244873
+    },
+    {
+      "detail" : "all-minilm:22m: two 384-dimensional vectors",
+      "name" : "embeddings\/float-batch",
+      "passed" : true,
+      "seconds" : 0.526068925857544
+    },
+    {
+      "detail" : "384 base64-encoded float32 values",
+      "name" : "embeddings\/base64",
+      "passed" : true,
+      "seconds" : 0.01692497730255127
+    },
+    {
+      "detail" : "Generated embedding decoded and projected",
+      "name" : "generated\/embeddings",
+      "passed" : true,
+      "seconds" : 0.026702046394348145
+    },
+    {
+      "detail" : "This is a plain, solid white image.",
+      "name" : "chat\/vision",
+      "passed" : true,
+      "seconds" : 7.415195941925049
+    }
+  ],
+  "model" : "gpt-oss:latest",
+  "serverVersion" : "0.31.1",
+  "startedAt" : "2026-10-12T00:35:06Z"
+}

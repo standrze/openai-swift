@@ -1,0 +1,496 @@
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateAllAnyOneOf.swift b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateAllAnyOneOf.swift
+index 1816cabc..17c63ee4 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateAllAnyOneOf.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateAllAnyOneOf.swift
+@@ -192,7 +192,7 @@ extension TypesFileTranslator {
+                 }
+         }
+ 
+-        let caseDecls: [Declaration] = cases.flatMap { caseInfo in
++        var caseDecls: [Declaration] = cases.flatMap { caseInfo in
+             let (caseName, _, _, comment, childType, associatedDeclarations) = caseInfo
+             return associatedDeclarations + [
+                 .commentable(
+@@ -205,6 +205,14 @@ extension TypesFileTranslator {
+             ]
+         }
+ 
++caseDecls.append(.enumCase(name: "undocumented", kind: .nameWithAssociatedValues([
++    .init(type: .member(["OpenAI", "RawJSONValue"]))
++])))
++caseDecls.append(.variable(accessModifier: config.access, isStatic: true, kind: .var,
++    left: "jsonDefaultValue", type: .member("Self"), getter: [.expression(.return(.dot("undocumented").call([
++        .init(label: nil, expression: .dot("null"))
++    ])))]))
++
+         let codingKeysDecls: [Declaration]
+         let decoder: Declaration
+         if let discriminator {
+@@ -224,7 +232,7 @@ extension TypesFileTranslator {
+                 )
+             ]
+             decoder = translateOneOfWithDiscriminatorDecoder(
+-                discriminatorName: swiftName,
++                discriminatorName: originalName,
+                 cases: cases.map { ($0.0, $0.1!) }
+             )
+         } else {
+@@ -232,14 +240,14 @@ extension TypesFileTranslator {
+             decoder = translateOneOfWithoutDiscriminatorDecoder(cases: cases.map { ($0.0, $0.2) })
+         }
+ 
+-        let encoder = translateOneOfEncoder(cases: cases.map { ($0.0, $0.2) })
++        let encoder = translateOneOfEncoder(cases: cases.map { ($0.0, $0.2) } + [("undocumented", true)])
+ 
+         let comment: Comment? = typeName.docCommentWithUserDescription(openAPIDescription)
+         let enumDecl: Declaration = .enum(
+             isFrozen: true,
+             accessModifier: config.access,
+             name: typeName.shortSwiftName,
+-            conformances: Constants.ObjectStruct.conformances,
++            conformances: Constants.ObjectStruct.conformances + ["OpenAI.JSONDefaultValue"],
+             members: caseDecls + codingKeysDecls + [decoder, encoder]
+         )
+         return .commentable(comment, enumDecl)
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateCodable.swift b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateCodable.swift
+index 3155d81b..00ac0960 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateCodable.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateCodable.swift
+@@ -27,46 +27,33 @@ extension FileTranslator {
+         strategy: StructBlueprint.OpenAPICodableStrategy,
+         properties: [PropertyBlueprint]
+     ) -> Declaration? {
+-        let knownKeys = properties.map(\.originalName)
+-        let knownKeysFunctionArg = FunctionArgumentDescription(
+-            label: "knownKeys",
+-            expression: .literal(.array(knownKeys.map { .literal($0) }))
+-        )
+-        switch strategy {
+-        case .synthesized: return nil
+-        case .enforcingNoAdditionalProperties:
+-            return translateStructBlueprintCustomDecoder(
+-                properties: properties,
+-                trailingCodeBlocks: [
+-                    .expression(
+-                        .try(
+-                            .identifierPattern("decoder").dot("ensureNoAdditionalProperties")
+-                                .call([knownKeysFunctionArg])
+-                        )
+-                    )
+-                ]
+-            )
+-        case .allowingAdditionalProperties:
+-            return translateStructBlueprintCustomDecoder(
+-                properties: properties,
+-                trailingCodeBlocks: [
+-                    .expression(
+-                        .assignment(
+-                            left: .identifierPattern(Constants.AdditionalProperties.variableName),
+-                            right: .try(
+-                                .identifierPattern("decoder").dot("decodeAdditionalProperties")
+-                                    .call([knownKeysFunctionArg])
+-                            )
+-                        )
+-                    )
+-                ]
+-            )
+-        case .allOf(propertiesIsKeyValuePairSchema: let isKeyValuePairs):
+-            return translateStructBlueprintAllOfDecoder(properties: Array(zip(properties, isKeyValuePairs)))
+-        case .anyOf(propertiesIsKeyValuePairSchema: let isKeyValuePairs):
+-            return translateStructBlueprintAnyOfDecoder(properties: Array(zip(properties, isKeyValuePairs)))
+-        }
++    let knownKeys = properties.map(\.originalName)
++    let metadata = CodeBlock.expression(.assignment(left: .selfDot("jsonMetadata"), right: .try(
++        .identifierPattern("OpenAI.JSONMetadata").call([
++            .init(label: "from", expression: .identifierPattern("decoder")),
++            .init(label: "knownKeys", expression: .literal(.array(knownKeys.map { .literal($0) })))
++        ])
++    )))
++    let result: Declaration
++    switch strategy {
++    case .synthesized, .enforcingNoAdditionalProperties:
++        result = translateStructBlueprintCustomDecoder(properties: properties)
++    case .allowingAdditionalProperties:
++        result = translateStructBlueprintCustomDecoder(properties: properties, trailingCodeBlocks: [
++            .expression(.assignment(left: .identifierPattern(Constants.AdditionalProperties.variableName),
++                right: .try(.identifierPattern("decoder").dot("decodeAdditionalProperties").call([
++                    .init(label: "knownKeys", expression: .literal(.array(knownKeys.map { .literal($0) })))
++                ]))))
++        ])
++    case .allOf(propertiesIsKeyValuePairSchema: let pairs):
++        result = translateStructBlueprintAllOfDecoder(properties: Array(zip(properties, pairs)))
++    case .anyOf(propertiesIsKeyValuePairSchema: let pairs):
++        result = translateStructBlueprintAnyOfDecoder(properties: Array(zip(properties, pairs)))
+     }
++    guard case .function(var function) = result else { return result }
++    function.body = [metadata] + (function.body ?? [])
++    return .function(function)
++}
+ 
+     /// Returns a declaration of a custom encoder function.
+     /// - Parameters:
+@@ -78,7 +65,7 @@ extension FileTranslator {
+         properties: [PropertyBlueprint]
+     ) -> Declaration? {
+         switch strategy {
+-        case .synthesized, .enforcingNoAdditionalProperties: return nil
++        case .synthesized, .enforcingNoAdditionalProperties: return translateStructBlueprintCustomEncoder(properties: properties)
+         case .allowingAdditionalProperties:
+             return translateStructBlueprintCustomEncoder(
+                 properties: properties,
+@@ -120,10 +107,12 @@ extension FileTranslator {
+             return .assignment(
+                 left: .selfDot(property.swiftSafeName),
+                 right: .try(
+-                    .identifierPattern("container").dot("decode\(typeUsage.isOptional ? "IfPresent" : "")")
++                    .identifierPattern("OpenAI.decodeJSONField\(typeUsage.isOptional ? "IfPresent" : "")")
+                         .call([
+                             .init(label: nil, expression: .identifierType(typeUsage.withOptional(false)).dot("self")),
+                             .init(label: "forKey", expression: .dot(property.swiftSafeName)),
++.init(label: "from", expression: .identifierPattern("container")),
++.init(label: "metadata", expression: .inOut(.selfDot("jsonMetadata"))),
+                         ])
+                 )
+             )
+@@ -154,10 +143,12 @@ extension FileTranslator {
+         )
+         let encodeExprs: [Expression] = properties.map { property in
+             .try(
+-                .identifierPattern("container").dot("encode\(property.typeUsage.isOptional ? "IfPresent" : "")")
++                .identifierPattern("OpenAI.encodeJSONField\(property.typeUsage.isOptional ? "IfPresent" : "")")
+                     .call([
+                         .init(label: nil, expression: .selfDot(property.swiftSafeName)),
+                         .init(label: "forKey", expression: .dot(property.swiftSafeName)),
++.init(label: "to", expression: .inOut(.identifierPattern("container"))),
++.init(label: "overrides", expression: .selfDot("jsonOverrides")),
+                     ])
+             )
+         }
+@@ -165,11 +156,31 @@ extension FileTranslator {
+         if !properties.isEmpty {
+             encodingCodeBlocks = [.declaration(containerVarDecl)] + encodeExprs.map { .expression($0) }
+         } else {
+-            encodingCodeBlocks = []
++            encodingCodeBlocks = [.expression(.try(.identifierPattern("OpenAI.encodeEmptyJSONObject").call([.init(label: "to", expression: .identifierPattern("encoder"))])))]
+         }
+-        return encoderFunction(body: encodingCodeBlocks + trailingCodeBlocks)
++        let extras: CodeBlock = .expression(.try(.identifierPattern("OpenAI.encodeJSONExtras").call([
++    .init(label: nil, expression: .selfDot("jsonOverrides")),
++    .init(label: "knownKeys", expression: .literal(.array(properties.map { .literal($0.originalName) }))),
++    .init(label: "to", expression: .identifierPattern("encoder"))
++])))
++return encoderFunction(body: encodingCodeBlocks + trailingCodeBlocks + [extras])
++
+     }
+ 
++func openAICompositeEncoder(body: [CodeBlock]) -> Declaration {
++    let wrapper = CodeBlock.declaration(.variable(kind: .let, left: "encoder", right:
++        .identifierPattern("OpenAI.JSONOverrideEncoder").call([
++            .init(label: nil, expression: .identifierPattern("encoder")),
++            .init(label: "overrides", expression: .selfDot("jsonOverrides"))
++        ])))
++    let extras = CodeBlock.expression(.try(.identifierPattern("OpenAI.encodeJSONExtras").call([
++        .init(label: nil, expression: .selfDot("jsonOverrides")),
++        .init(label: "knownKeys", expression: .literal(.array([]))),
++        .init(label: "to", expression: .identifierPattern("encoder"))
++    ])))
++    return encoderFunction(body: [wrapper] + body + [extras])
++}
++
+     // MARK: - AllOf encoder and decoder
+ 
+     /// Returns a declaration of an allOf decoder implementation.
+@@ -200,7 +211,7 @@ extension FileTranslator {
+         } else {
+             exprs = properties.filter(\.isKeyValuePair).map { .selfDot($0.property.swiftSafeName).encodeExpr() }
+         }
+-        return encoderFunction(body: exprs.map { .expression($0) })
++        return openAICompositeEncoder(body: exprs.map { .expression($0) })
+     }
+ 
+     // MARK: - AnyOf encoder and decoder
+@@ -214,23 +225,17 @@ extension FileTranslator {
+         let errorArrayDecl: Declaration = .createErrorArrayDecl()
+         let assignBlocks: [CodeBlock] = properties.map { (property, isKeyValuePair) in
+             let decoderExpr: Expression =
+-                isKeyValuePair ? .initFromDecoderExpr() : .decodeFromSingleValueContainerExpr()
++                .identifierPattern("OpenAI.decodeJSONUnionCase").call([.init(label: "from", expression: .identifierPattern("decoder"))])
+             let assignExpr: Expression = .assignment(left: .selfDot(property.swiftSafeName), right: .try(decoderExpr))
+             return .expression(assignExpr.wrapInDoCatchAppendArrayExpr())
+         }
+-        let atLeastOneNotNilCheckExpr: Expression = .try(
+-            .identifierType(TypeName.decodingError).dot("verifyAtLeastOneSchemaIsNotNil")
+-                .call([
+-                    .init(
+-                        label: nil,
+-                        expression: .literal(.array(properties.map { .selfDot($0.property.swiftSafeName) }))
+-                    ), .init(label: "type", expression: .identifierPattern("Self").dot("self")),
+-                    .init(label: "codingPath", expression: .identifierPattern("decoder").dot("codingPath")),
+-                    .init(label: "errors", expression: .identifierPattern("errors")),
+-                ])
+-        )
++let fallback: CodeBlock = .expression(.assignment(left: .selfDot("undocumented"), right:
++    .try(.identifierPattern("OpenAI.unknownJSONUnion").call([
++        .init(label: "from", expression: .identifierPattern("decoder")),
++        .init(label: "matches", expression: .literal(.array(properties.map { .selfDot($0.property.swiftSafeName) })))
++    ]))))
+         return decoderInitializer(
+-            body: [.declaration(errorArrayDecl)] + assignBlocks + [.expression(atLeastOneNotNilCheckExpr)]
++            body: [.declaration(errorArrayDecl)] + assignBlocks + [fallback]
+         )
+     }
+ 
+@@ -252,7 +257,8 @@ extension FileTranslator {
+             (encodeSingleValuesExpr.flatMap { [$0] } ?? [])
+             + properties.filter { $0.isKeyValuePair }.map(\.property)
+             .map { property in .selfDot(property.swiftSafeName).optionallyChained().encodeExpr() }
+-        return encoderFunction(body: encodeExprs.map { .expression($0) })
++        let unknown = CodeBlock.expression(.try(.identifierPattern("OpenAI.encodeUnknownJSONUnion").call([.init(label: nil, expression: .selfDot("undocumented")), .init(label: "to", expression: .identifierPattern("encoder"))])))
++        return openAICompositeEncoder(body: [unknown] + encodeExprs.map { .expression($0) })
+     }
+ 
+     // MARK: - OneOf encoder and decoder
+@@ -264,7 +270,7 @@ extension FileTranslator {
+         let errorArrayDecl: Declaration = .createErrorArrayDecl()
+         let assignExprs: [Expression] = cases.map { (caseName, isKeyValuePair) in
+             let decoderExpr: Expression =
+-                isKeyValuePair ? .initFromDecoderExpr() : .decodeFromSingleValueContainerExpr()
++                .identifierPattern("OpenAI.decodeJSONUnionCase").call([.init(label: "from", expression: .identifierPattern("decoder"))])
+             let body: [CodeBlock] = [
+                 .expression(
+                     .assignment(
+@@ -275,12 +281,20 @@ extension FileTranslator {
+             ]
+             return body.wrapInDoCatchAppendArrayExpr()
+         }
+-        let otherExprs: [CodeBlock] = [.expression(translateOneOfDecoderThrowOnNoCaseDecodedExpr())]
++        let otherExprs: [CodeBlock] = [.expression(openAIUnknownUnionExpr())]
+         return decoderInitializer(
+             body: [.declaration(errorArrayDecl)] + (assignExprs).map { .expression($0) } + otherExprs
+         )
+     }
+ 
++func openAIUnknownUnionExpr() -> Expression {
++    .assignment(left: .identifierPattern("self"), right: .dot("undocumented").call([
++        .init(label: nil, expression: .try(.identifierPattern("OpenAI.RawJSONValue").call([
++            .init(label: "from", expression: .identifierPattern("decoder"))
++        ])))
++    ]))
++}
++
+     /// Returns an expression that throws an error when a oneOf discriminator
+     /// failed to match any known cases.
+     func translateOneOfDecoderThrowOnUnknownExpr(discriminatorSwiftName: String) -> Expression {
+@@ -333,21 +347,18 @@ extension FileTranslator {
+             )
+         }
+         let otherExprs: [CodeBlock] = [
+-            .expression(translateOneOfDecoderThrowOnUnknownExpr(discriminatorSwiftName: discriminatorName))
++            .expression(openAIUnknownUnionExpr())
+         ]
+         let body: [CodeBlock] = [
+-            .declaration(.decoderContainerOfKeysVar()),
++
+             .declaration(
+                 .variable(
+                     kind: .let,
+                     left: Constants.OneOf.discriminatorName,
+-                    right: .try(
+-                        .identifierPattern("container").dot("decode")
+-                            .call([
+-                                .init(label: nil, expression: .identifierType(TypeName.string).dot("self")),
+-                                .init(label: "forKey", expression: .dot(discriminatorName)),
+-                            ])
+-                    )
++                    right: .identifierPattern("OpenAI.decodeJSONDiscriminator").call([
++    .init(label: nil, expression: .literal(discriminatorName)),
++    .init(label: "from", expression: .identifierPattern("decoder"))
++])
+                 )
+             ),
+             .expression(
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawEnum.swift b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawEnum.swift
+index e99d559f..f450c988 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawEnum.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawEnum.swift
+@@ -123,17 +123,18 @@ extension FileTranslator {
+         }
+         let baseConformance: String
+         switch backingType {
+-        case .string: baseConformance = Constants.RawEnum.baseConformanceString
+-        case .integer: baseConformance = Constants.RawEnum.baseConformanceInteger
++        case .string: baseConformance = "RawRepresentable"
++        case .integer: baseConformance = "RawRepresentable"
+         }
+-        let conformances = [baseConformance] + Constants.RawEnum.conformances
++        let conformances = [baseConformance] + Constants.RawEnum.conformances + [backingType == .string ? "OpenAI.JSONStringEnum" : "OpenAI.JSONIntegerEnum"]
+         return try translateRawRepresentableEnum(
+             typeName: typeName,
+             conformances: conformances,
+             userDescription: userDescription,
+             cases: cases.map { ($0.caseName, $0.literal) },
+-            unknownCaseName: nil,
+-            unknownCaseDescription: nil
++            unknownCaseName: "undocumented",
++            unknownCaseDescription: "A value introduced after this SDK schema was published.",
++            rawValueType: backingType == .string ? .string : .int
+         )
+     }
+ }
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawRepresentableEnum.swift b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawRepresentableEnum.swift
+index 4e4ee3c1..74037754 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawRepresentableEnum.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateRawRepresentableEnum.swift
+@@ -36,6 +36,7 @@ extension FileTranslator {
+         cases: [(caseName: String, rawExpr: LiteralDescription)],
+         unknownCaseName: String?,
+         unknownCaseDescription: String?,
++        rawValueType: TypeName = .string,
+         customSwitchedExpression: (Expression) -> Expression = { $0 }
+     ) throws -> Declaration {
+ 
+@@ -48,7 +49,7 @@ extension FileTranslator {
+         if let unknownCaseName {
+             let undocumentedCase: Declaration = .commentable(
+                 unknownCaseDescription.flatMap { .doc($0) },
+-                .enumCase(name: unknownCaseName, kind: .nameWithAssociatedValues([.init(type: .init(TypeName.string))]))
++                .enumCase(name: unknownCaseName, kind: .nameWithAssociatedValues([.init(type: .init(rawValueType))]))
+             )
+             let rawRepresentableInitializer: Declaration
+             do {
+@@ -78,7 +79,7 @@ extension FileTranslator {
+                     .init(
+                         accessModifier: config.access,
+                         kind: .initializer(failable: true),
+-                        parameters: [.init(label: "rawValue", type: .init(TypeName.string))],
++                        parameters: [.init(label: "rawValue", type: .init(rawValueType))],
+                         body: [
+                             .expression(
+                                 .switch(
+@@ -113,7 +114,7 @@ extension FileTranslator {
+                     accessModifier: config.access,
+                     kind: .var,
+                     left: "rawValue",
+-                    type: .init(TypeName.string),
++                    type: .init(rawValueType),
+                     getter: [
+                         .expression(
+                             .switch(switchedExpression: .identifierPattern("self"), cases: [unknownCase] + knownCases)
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateStructBlueprint.swift b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateStructBlueprint.swift
+index 9f0bbef2..be80511b 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateStructBlueprint.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/CommonTranslations/translateStructBlueprint.swift
+@@ -27,7 +27,32 @@ extension FileTranslator {
+ 
+         let propertyDecls = allProperties.flatMap(translatePropertyBlueprint)
+ 
+-        var members = propertyDecls
++var members = propertyDecls
++let isJSONModel = blueprint.conformances.contains("Codable")
++if isJSONModel {
++    members.append(.commentable(nil, .variable(accessModifier: config.access, kind: .var,
++        left: "jsonOverrides", type: .dictionaryValue(.member(["OpenAI", "JSONFieldOverride"])),
++        right: .dot("init").call([]))))
++
++    members.append(.commentable(nil, .variable(accessModifier: config.access, kind: .var,
++        left: "jsonMetadata", type: .member(["OpenAI", "JSONMetadata"]),
++        right: .dot("init").call([]))))
++    if case .anyOf = blueprint.codableStrategy {
++    members.append(.variable(accessModifier: config.access, kind: .var,
++        left: "undocumented", type: .optional(.member(["OpenAI", "RawJSONValue"])), right: .literal(.nil)))
++}
++let required = allProperties.filter { $0.defaultValue == nil }
++    members.append(.variable(accessModifier: config.access, isStatic: true, kind: .var,
++        left: "jsonDefaultValue", type: .member("Self"), getter: [
++            .expression(.return(.dot("init").call(required.map { property in
++                .init(label: property.swiftSafeName,
++                    expression: .identifierPattern("OpenAI.defaultJSONValue").call([
++                        .init(label: nil, expression: .identifierType(property.typeUsage).dot("self"))
++                    ]))
++            })))
++        ]))
++}
++
+         let initDecl = translateStructBlueprintInitializer(typeName: typeName, properties: allProperties)
+         members.append(initDecl)
+ 
+@@ -36,14 +61,14 @@ extension FileTranslator {
+             members.append(codingKeysDecl)
+         }
+ 
+-        if let customDecoder = translateStructBlueprintDecoder(
++        if isJSONModel, let customDecoder = translateStructBlueprintDecoder(
+             strategy: blueprint.codableStrategy,
+             properties: serializableProperties
+         ) {
+             members.append(customDecoder)
+         }
+ 
+-        if let customEncoder = translateStructBlueprintEncoder(
++        if isJSONModel, let customEncoder = translateStructBlueprintEncoder(
+             strategy: blueprint.codableStrategy,
+             properties: serializableProperties
+         ) {
+@@ -53,7 +78,7 @@ extension FileTranslator {
+         let structDesc = StructDescription(
+             accessModifier: config.access,
+             name: typeName.shortSwiftName,
+-            conformances: blueprint.conformances,
++            conformances: blueprint.conformances + (isJSONModel ? ["OpenAI.JSONModel"] : []),
+             members: members
+         )
+ 
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/CommonTypes/Constants.swift b/Sources/_OpenAPIGeneratorCore/Translator/CommonTypes/Constants.swift
+index 38b4d7b2..669f8a2b 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/CommonTypes/Constants.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/CommonTypes/Constants.swift
+@@ -132,7 +132,7 @@ enum Constants {
+         enum Middleware {
+ 
+             /// The name of the client middleware type.
+-            static let typeName: String = "any ClientMiddleware"
++            static let typeName: String = "any OpenAPIRuntime.ClientMiddleware"
+         }
+     }
+ 
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/Responses/translateResponseOutcome.swift b/Sources/_OpenAPIGeneratorCore/Translator/Responses/translateResponseOutcome.swift
+index b6917860..7573f593 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/Responses/translateResponseOutcome.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/Responses/translateResponseOutcome.swift
+@@ -256,7 +256,7 @@ extension ClientFileTranslator {
+                 }
+ 
+                 let converterExpr: Expression = .identifierPattern("converter")
+-                    .dot("getResponseBodyAs\(codingStrategy.runtimeName)")
++                    .dot(codingStrategy == .json ? "getOpenAIResponseBodyAsJSON" : "getResponseBodyAs\(codingStrategy.runtimeName)")
+                     .call(
+                         [
+                             .init(label: nil, expression: .identifierType(contentTypeUsage).dot("self")),
+diff --git a/Sources/_OpenAPIGeneratorCore/Translator/TypesTranslator/translateBoxedTypes.swift b/Sources/_OpenAPIGeneratorCore/Translator/TypesTranslator/translateBoxedTypes.swift
+index e2b97ac5..38acdf82 100644
+--- a/Sources/_OpenAPIGeneratorCore/Translator/TypesTranslator/translateBoxedTypes.swift
++++ b/Sources/_OpenAPIGeneratorCore/Translator/TypesTranslator/translateBoxedTypes.swift
+@@ -104,9 +104,10 @@ extension TypesFileTranslator {
+         // Define explicit setters/getters for properties and call into storage.
+         desc.members = desc.members.map { member in
+             guard case .commentable(let comment, let commented) = member,
+-                case .variable(var variableDescription) = commented
++                case .variable(var variableDescription) = commented, !variableDescription.isStatic
+             else { return member }
+             let name = TextBasedRenderer.renderedExpressionAsString(variableDescription.left)
++            variableDescription.right = nil
+             variableDescription.getter = [.expression(.selfDot("storage").dot("value").dot(name))]
+             variableDescription.modify = [.expression(.yield(.inOut(.selfDot("storage").dot("value").dot(name))))]
+             return .commentable(comment, .variable(variableDescription))
+@@ -118,10 +119,7 @@ extension TypesFileTranslator {
+                 funcDesc.signature.kind == .initializer(failable: false),
+                 funcDesc.signature.parameters.first?.name != "decoder"
+             else { return member }
+-            let propertyNames: [String] = desc.members.compactMap { member in
+-                guard case .variable(let variableDescription) = member.strippingTopComment else { return nil }
+-                return TextBasedRenderer.renderedExpressionAsString(variableDescription.left)
+-            }
++            let propertyNames = funcDesc.signature.parameters.map { $0.label ?? $0.name! }
+             funcDesc.body = [
+                 .expression(
+                     .assignment(

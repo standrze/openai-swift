@@ -1,0 +1,44 @@
+{
+  "baseURL" : "http:\/\/localhost:11434\/v1",
+  "checks" : [
+    {
+      "detail" : "0.35.1",
+      "name" : "server\/version",
+      "passed" : true,
+      "seconds" : 0.05752003192901611
+    },
+    {
+      "detail" : "Listed and retrieved 6 models, including namespaced IDs",
+      "name" : "models.list\/retrieve",
+      "passed" : true,
+      "seconds" : 0.3790290355682373
+    },
+    {
+      "detail" : "Raw request and download retrieved all 6 model IDs",
+      "name" : "models\/raw-rest",
+      "passed" : true,
+      "seconds" : 0.32945096492767334
+    },
+    {
+      "detail" : "Streamed raw retrieval decoded all 6 model IDs",
+      "name" : "models\/raw-stream",
+      "passed" : true,
+      "seconds" : 0.05964100360870361
+    },
+    {
+      "detail" : "Disabled workaround and unknown namespaced ID both retain Ollama's 404",
+      "name" : "models\/fallback-controls",
+      "passed" : true,
+      "seconds" : 0.043914079666137695
+    },
+    {
+      "detail" : "Listed and retrieved 6 models with generated schemas, including namespaced IDs",
+      "name" : "generated\/models",
+      "passed" : true,
+      "seconds" : 0.1748208999633789
+    }
+  ],
+  "model" : "gpt-oss:latest",
+  "serverVersion" : "0.35.1",
+  "startedAt" : "2026-10-12T03:24:55Z"
+}

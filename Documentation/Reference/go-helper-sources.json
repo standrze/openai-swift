@@ -1,0 +1,25 @@
+{
+  "revision": "2922f3e8a846d561d85e4aabb90f017c2de10851",
+  "source_url": "https://github.com/openai/openai-go/tree/2922f3e8a846d561d85e4aabb90f017c2de10851",
+  "files": {
+    "polling.go": "dc6d237cecf3d9d5fc68d83d981907cb25dbacaea7defa0165a7878d9a33095f",
+    "agents_message.go": "e15d4acdb8c05954a4169558c2b6da2f5bfe935ac5750b2cf58972f306f0984b",
+    "agents_stream.go": "0264d28a79e127183230099a5dcd206f9a8c8005534f0f7676a56269a6850120",
+    "beta_agents_result.go": "180dc48136e92446085940fa762d21d242bda902b76eb6d578e1416e5440230e",
+    "beta_agents_output.go": "35ddac5cafced790c70da12a5bf33fe7ee02930743f190a330792668eef9ce79",
+    "beta_agents_files.go": "151ea14279db1ceb7210b9e62afef1d6c7647dd54cf2fc9917f34a891ae16639",
+    "streamaccumulator.go": "ae635599e0f0cd8a568d694ad11051c9a47d91e4362c947c84825bc242efdb9e",
+    "responses/response_accumulator.go": "45462c7a04846fd1a982377511faf6b18af9ffc7e4ff92544656217679e73bb5",
+    "responses/response_accumulator_details.go": "48ebb70aebb42bbd71b9f2de84a10347430143764dc061c10098c40a89fe4f30",
+    "vectorstorefile.go": "c926f13bda919923779c9a41b224b4050430ea3931eae071dab81db0476e3890",
+    "vectorstorefilebatch.go": "3dce870150579131309f8e889825954a9ca90e3dce2fbc0e3b479ffbb805a960",
+    "video.go": "5ba1749851060d099965b26232126bf0d864f9ed0360f2de5de1a5a0c43eae4a",
+    "vectorstorefile_helpers.go": "0530d73c6c7b5abd0b20fcc1e5f596f96257bc9132672251280a315e482d9031",
+    "vectorstorefilebatch_helpers.go": "17d36a3a250dff114aa9883647a76f9c1d2c176eab180991a1454383446c932f",
+    "chatcompletion_helpers.go": "7197efc665fbcb4c49985e14901d9d4f07eff4bcfc96ea246524158096711976",
+    "beta_agents_creation_stream.go": "a65ffe1ca712145841a3f866fdd53f8f6394f633a290efbd4042e98f269a2bd4",
+    "agents_tools.go": "454f747f5efccef2fe23e898d067439b4d2c3d64ca9899bfb03b21cb00aa2e61",
+    "beta_agents_tool_error.go": "e6dd42cd968f61f4aba4d54afe8c0743a76c5d538a324b7385ecfce00c6790af",
+    "responses/responses_websocket.go": "74f6eb1bb13de92368166051b960a28b45f42b8629c9b8220fac400d9acb6fc3"
+  }
+}
